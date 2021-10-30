@@ -1,5 +1,8 @@
 <script lang="ts">
+	import { SessionFactory } from '../factory/SessionFactory';
 	import TimerComponent from '../components/timer.svelte';
+
+	let sessionTypes = new SessionFactory().totalRules();
 
 	let sessionTime: Number;
 
@@ -11,25 +14,15 @@
 
 <body>
 	<div class="flex place-content-center p-10 space-x-10">
-		<button
-			on:click={() => sessionStart(45)}
-			class="p-2 bg-purple-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-		>
-			Office Session
-		</button>
-		<button
-			on:click={() => sessionStart(15)}
-			class="p-2 bg-red-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-		>
-			Personal Session
-		</button>
-		<button
-			on:click={() => sessionStart(25)}
-			class="p-2 bg-blue-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-		>
-			Pomodoro Session
-		</button>
+		{#each sessionTypes as sessions}
+			<button
+				on:click={() => sessionStart(sessions.limit)}
+				class="transition ease-in duration-700 p-2 bg-{sessions.color}-600 hover:bg-{sessions.hoverColor}-700 text-white font-bold py-2 px-4 rounded"
+			>
+				{sessions.name}
+			</button>
+		{/each}
 	</div>
 
-	<TimerComponent time={sessionTime} />
+	<TimerComponent endTime={sessionTime} />
 </body>
