@@ -42,16 +42,16 @@
 	}
 </script>
 
-<div class="rounded overflow-hidden shadow-lg">
+<div class="rounded overflow-hidden">
 	<div class="">
-		<div class="px-6 py-4 text-center">
-			<div class="font-bold text-xl mb-4">{sessionNameProp}</div>
+		<div class="px-6 py-4 text-center dark:text-white">
+			<div class="font-bold text-4xl mb-14">{sessionNameProp}</div>
 			<p>
-				<span class="p-2 border-2">{hourClockValue}</span>
-				<span class="p-2 border-2">{secondClockValue}</span>
+				<span class="p-7 border-2 text-7xl">{hourClockValue}</span>
+				<span class="p-7 border-2 text-7xl">{secondClockValue}</span>
 			</p>
 		</div>
-		<div class="px-6 pt-4 pb-2 text-center">
+		<div class="px-6 pt-12 pb-2 text-center">
 			<button
 				class="bg-green-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
 				on:click={actBtnFunc}>{actBtnName}</button

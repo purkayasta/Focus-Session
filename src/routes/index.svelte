@@ -15,23 +15,16 @@
 	let activeTab: number = 0;
 </script>
 
-<body>
+<body class="bg-white dark:bg-black">
 	<div class="flex place-content-center p-10 space-x-2">
 		{#each sessionTypes as sessions, index}
 			<li
-				class="cursor-pointer py-2 px-4 text-gray-500 border-b-8"
+				class="cursor-pointer py-2 px-4 text-gray-500 dark:text-white border-b-8"
 				class:selected={activeTab === index}
 				on:click={() => sessionStart(sessions.limit, sessions.name, index)}
 			>
 				{sessions.name}
 			</li>
-
-			<!-- <button
-				on:click={() => sessionStart(sessions.limit, sessions.name)}
-				class="transition ease-in duration-700 p-2 bg-{sessions.color}-600 hover:bg-{sessions.hoverColor}-700 text-white font-bold py-2 px-4 rounded"
-			>
-				{sessions.name}
-			</button> -->
 		{/each}
 	</div>
 
