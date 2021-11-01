@@ -1,36 +1,44 @@
 <script lang="ts">
+import { onMount } from "svelte";
+
+
 	export let timeProp: number;
 	export let sessionNameProp: string;
 
-	let minSecondValue = 0,
-		minHourValue = 0,
-		maxSecondValue = 9;
+	let isTimerStarted: boolean = false;
+	let actBtnName: string = 'Start';
 
-	let timerCallback;
-	let finished = false;
+	let minSecondValue: number = 0,
+		minHourValue: number = 0,
+		maxSecondValue: number = 9;
+
+	let timerCallback: any;
 
 	$: hourClockValue = timeProp ?? 0;
-	let secondClockValue = minSecondValue;
+	let secondClockValue: number = minSecondValue;
 
 	function time(): void {
 		console.log(hourClockValue + '|' + secondClockValue);
 		if (hourClockValue === minHourValue && secondClockValue === minSecondValue) {
-			finished = true;
+			// finished = true;
 		} else if (secondClockValue === minSecondValue) {
 			hourClockValue--;
 			secondClockValue = maxSecondValue;
 		} else secondClockValue--;
 	}
-	function startTimer(): void {
-		if (!finished) {
-			stopTimer();
-		} else timerCallback = setInterval(time, 1000);
+	function actBtnFunc(): void {
+		if (isTimerStarted) {
+			actBtnName = 'Start';
+			clearInterval(timerCallback);
+		} else {
+			actBtnName = 'Stop';
+			timerCallback = setInterval(time, 1000);
+		}
+		isTimerStarted = !isTimerStarted;
 	}
-	function stopTimer(): void {
-		clearInterval(timerCallback);
-	}
+
 	function resetTimer(): void {
-		stopTimer();
+		clearInterval(timerCallback);
 		hourClockValue = timeProp;
 		secondClockValue = 0;
 	}
@@ -48,14 +56,10 @@
 		<div class="px-6 pt-4 pb-2">
 			<button
 				class="bg-green-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-				on:click={startTimer}>Start</button
+				on:click={actBtnFunc}>{actBtnName}</button
 			>
 			<button
-				class="bg-red-400 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-				on:click={stopTimer}>Stop</button
-			>
-			<button
-				class="bg-blue-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+				class="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
 				on:click={resetTimer}>Reset</button
 			>
 		</div>
