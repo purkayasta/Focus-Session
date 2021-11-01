@@ -1,7 +1,4 @@
 <script lang="ts">
-import { onMount } from "svelte";
-
-
 	export let timeProp: number;
 	export let sessionNameProp: string;
 
@@ -20,7 +17,8 @@ import { onMount } from "svelte";
 	function time(): void {
 		console.log(hourClockValue + '|' + secondClockValue);
 		if (hourClockValue === minHourValue && secondClockValue === minSecondValue) {
-			// finished = true;
+			console.log('Finished');
+			clearInterval(timerCallback);
 		} else if (secondClockValue === minSecondValue) {
 			hourClockValue--;
 			secondClockValue = maxSecondValue;
@@ -44,8 +42,8 @@ import { onMount } from "svelte";
 	}
 </script>
 
-<div class="flex place-content-center">
-	<div class="max-w-sm rounded overflow-hidden shadow-lg">
+<div class="rounded overflow-hidden shadow-lg">
+	<div class="">
 		<div class="px-6 py-4 text-center">
 			<div class="font-bold text-xl mb-4">{sessionNameProp}</div>
 			<p>
@@ -53,7 +51,7 @@ import { onMount } from "svelte";
 				<span class="p-2 border-2">{secondClockValue}</span>
 			</p>
 		</div>
-		<div class="px-6 pt-4 pb-2">
+		<div class="px-6 pt-4 pb-2 text-center">
 			<button
 				class="bg-green-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
 				on:click={actBtnFunc}>{actBtnName}</button
