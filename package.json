@@ -1,6 +1,11 @@
 {
   "name": "focus-mode",
   "version": "0.0.1",
+  "author": {
+    "name": "Pritom Purkayasta",
+    "url": "https://purkayasta.github.io"
+  },
+  "description": "Focus Mode is a project about pomodoro time sessions! A small ",
   "scripts": {
     "dev": "svelte-kit dev",
     "build": "svelte-kit build",

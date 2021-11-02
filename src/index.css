@@ -1,11 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Fruktur&family=Roboto+Slab&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Roboto+Slab&display=swap');
 
 #svelte {
   font-family: 'Roboto Slab', serif;
 }
 
-
 .header {
-  font-family: 'Fruktur', cursive;
+  font-family: 'Bangers', cursive;
 }
 

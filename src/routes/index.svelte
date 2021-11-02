@@ -16,6 +16,10 @@
 	}
 </script>
 
+<svelte:head>
+	<title>Focus Session ⌚🙏</title>
+</svelte:head>
+
 <body class="bg-white dark:bg-black">
 	<div class="flex place-content-center p-10 space-x-2">
 		{#each sessionTypes as sessions, index}
