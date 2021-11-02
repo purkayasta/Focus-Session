@@ -1,24 +1,22 @@
 <script lang="ts">
+	import { toast } from '@zerodevx/svelte-toast';
 	export let timeProp: number;
 	export let sessionNameProp: string;
-	import { toast } from '@zerodevx/svelte-toast';
+	export let isTimerStarted: boolean = false;
 
-	let isTimerStarted: boolean = false;
 	let actBtnName: string = 'Start';
 
 	let minSecondValue: number = 0,
 		minHourValue: number = 0,
 		maxSecondValue: number = 9;
 
+	let secondClockValue: number = minSecondValue;
 	let timerCallback: any;
 
 	$: hourClockValue = timeProp ?? 0;
-	let secondClockValue: number = minSecondValue;
 
-	function time(): void {
-		console.log(hourClockValue + '|' + secondClockValue);
+	function timeCalculation(): void {
 		if (hourClockValue === minHourValue && secondClockValue === minSecondValue) {
-			console.log('Finished');
 			clearInterval(timerCallback);
 			toast.push('Timer Finished', {
 				theme: {
@@ -32,6 +30,7 @@
 			secondClockValue = maxSecondValue;
 		} else secondClockValue--;
 	}
+
 	function actBtnFunc(): void {
 		if (isTimerStarted) {
 			actBtnName = 'Start';
@@ -44,7 +43,7 @@
 			});
 		} else {
 			actBtnName = 'Stop';
-			timerCallback = setInterval(time, 1000);
+			timerCallback = setInterval(timeCalculation, 1000);
 		}
 		isTimerStarted = !isTimerStarted;
 	}
@@ -53,6 +52,7 @@
 		clearInterval(timerCallback);
 		hourClockValue = timeProp;
 		secondClockValue = 0;
+		actBtnName = 'Start';
 		toast.push('Reset', {
 			theme: {
 				'--toastBackground': '#4169e1',
@@ -77,7 +77,7 @@
 				on:click={actBtnFunc}>{actBtnName}</button
 			>
 			<button
-				class="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+				class="bg-blue-800 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
 				on:click={resetTimer}>Reset</button
 			>
 		</div>
