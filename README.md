@@ -1,5 +1,10 @@
 # Focus Mode Featuring Svelte ❤️
 
+[Live Demo](https://focusmode.netlify.app/)
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/c49c2a17-a797-4d2d-8d3a-8bed7f43b05a/deploy-status)](https://app.netlify.com/sites/focusmode/deploys)
+
+
 - Svelte Kit 😍
 - Typescript 🥰
 - Tailwind CSS 👍
