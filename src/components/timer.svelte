@@ -52,6 +52,7 @@
 		clearInterval(timerCallback);
 		hourClockValue = timeProp;
 		secondClockValue = 0;
+		isTimerStarted = false;
 		actBtnName = 'Start';
 		toast.push('Reset', {
 			theme: {
