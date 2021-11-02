@@ -1,6 +1,7 @@
 <script lang="ts">
 	export let timeProp: number;
 	export let sessionNameProp: string;
+	import { toast } from '@zerodevx/svelte-toast';
 
 	let isTimerStarted: boolean = false;
 	let actBtnName: string = 'Start';
@@ -19,6 +20,13 @@
 		if (hourClockValue === minHourValue && secondClockValue === minSecondValue) {
 			console.log('Finished');
 			clearInterval(timerCallback);
+			toast.push('Timer Finished', {
+				theme: {
+					'--toastBackground': '#48BB78',
+					'--toastBarBackground': '#2F855A'
+				}
+			});
+			actBtnName = 'Start';
 		} else if (secondClockValue === minSecondValue) {
 			hourClockValue--;
 			secondClockValue = maxSecondValue;
@@ -28,6 +36,12 @@
 		if (isTimerStarted) {
 			actBtnName = 'Start';
 			clearInterval(timerCallback);
+			toast.push('Timer Stoped!', {
+				theme: {
+					'--toastBackground': '#F56565',
+					'--toastBarBackground': '#C53030'
+				}
+			});
 		} else {
 			actBtnName = 'Stop';
 			timerCallback = setInterval(time, 1000);
@@ -39,11 +53,17 @@
 		clearInterval(timerCallback);
 		hourClockValue = timeProp;
 		secondClockValue = 0;
+		toast.push('Reset', {
+			theme: {
+				'--toastBackground': '#4169e1',
+				'--toastBarBackground': '#00ccff'
+			}
+		});
 	}
 </script>
 
 <div class="rounded overflow-hidden">
-	<div class="">
+	<div>
 		<div class="px-6 py-4 text-center dark:text-white">
 			<div class="font-bold text-4xl mb-14">{sessionNameProp}</div>
 			<p>
