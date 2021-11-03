@@ -8,7 +8,7 @@
 
 	let minSecondValue: number = 0,
 		minHourValue: number = 0,
-		maxSecondValue: number = 9;
+		maxSecondValue: number = 59;
 
 	let secondClockValue: number = minSecondValue;
 	let timerCallback: any;
